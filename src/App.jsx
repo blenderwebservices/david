@@ -2,24 +2,8 @@ import React, { useState, useEffect } from 'react';
 import davidGomezPhoto from './assets/david-gomez-toon.jpeg';
 import david1 from './assets/david-gomez-1.jpeg';
 import david2 from './assets/david-gomez-2.jpeg';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Linkedin, 
-  Globe, 
-  Briefcase, 
-  GraduationCap, 
-  ChevronRight, 
-  Award, 
-  Users, 
-  Search,
-  ExternalLink,
-  Quote,
-  X,
-  Download,
-  FileText
-} from 'lucide-react';
+import { Github, Linkedin, ExternalLink, Calendar, Mail, FileText, ChevronRight, Menu, X, ArrowRight, MessageCircle, MapPin, Award, CheckCircle2, TrendingUp, Users, Phone, Globe, Briefcase, GraduationCap, Search, Download, Quote } from 'lucide-react';
+import Chatbot from './components/Chatbot';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('reciente');
@@ -120,10 +104,11 @@ const App = () => {
       <nav className={`fixed w-full z-50 transition-all duration-300 px-6 md:px-12 py-4 ${scrolled ? 'bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <span className="font-bold tracking-tighter text-xl uppercase italic text-indigo-700">DG.Civil</span>
-          <div className="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-500">
+          <div className="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-500 items-center">
             <a href="#experiencia" className="hover:text-indigo-600 transition-colors">Trayectoria</a>
             <a href="#educacion" className="hover:text-indigo-600 transition-colors">Formación</a>
             <a href="#contacto" className="hover:text-indigo-600 transition-colors">Contacto</a>
+            <a href="/admin" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-slate-900 transition-all">Ingresa</a>
           </div>
         </div>
       </nav>
@@ -401,6 +386,7 @@ const App = () => {
           </div>
         </div>
       )}
+      <Chatbot />
     </div>
   );
 };
