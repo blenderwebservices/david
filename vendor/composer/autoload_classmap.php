@@ -13,6 +13,8 @@ return array(
     'App\\Filament\\Resources\\AiModels\\Pages\\ListAiModels' => $baseDir . '/app/Filament/Resources/AiModels/Pages/ListAiModels.php',
     'App\\Filament\\Resources\\AiModels\\Schemas\\AiModelForm' => $baseDir . '/app/Filament/Resources/AiModels/Schemas/AiModelForm.php',
     'App\\Filament\\Resources\\AiModels\\Tables\\AiModelsTable' => $baseDir . '/app/Filament/Resources/AiModels/Tables/AiModelsTable.php',
+    'App\\Filament\\Resources\\AiProviders\\AiProviderResource' => $baseDir . '/app/Filament/Resources/AiProviders/AiProviderResource.php',
+    'App\\Filament\\Resources\\AiProviders\\Pages\\ManageAiProviders' => $baseDir . '/app/Filament/Resources/AiProviders/Pages/ManageAiProviders.php',
     'App\\Filament\\Resources\\AiVendors\\AiVendorResource' => $baseDir . '/app/Filament/Resources/AiVendors/AiVendorResource.php',
     'App\\Filament\\Resources\\AiVendors\\Pages\\CreateAiVendor' => $baseDir . '/app/Filament/Resources/AiVendors/Pages/CreateAiVendor.php',
     'App\\Filament\\Resources\\AiVendors\\Pages\\EditAiVendor' => $baseDir . '/app/Filament/Resources/AiVendors/Pages/EditAiVendor.php',

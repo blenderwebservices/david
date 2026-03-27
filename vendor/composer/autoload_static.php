@@ -721,6 +721,8 @@ class ComposerStaticInite1f4c487082edb2c2195a86f9721afe7
         'App\\Filament\\Resources\\AiModels\\Pages\\ListAiModels' => __DIR__ . '/../..' . '/app/Filament/Resources/AiModels/Pages/ListAiModels.php',
         'App\\Filament\\Resources\\AiModels\\Schemas\\AiModelForm' => __DIR__ . '/../..' . '/app/Filament/Resources/AiModels/Schemas/AiModelForm.php',
         'App\\Filament\\Resources\\AiModels\\Tables\\AiModelsTable' => __DIR__ . '/../..' . '/app/Filament/Resources/AiModels/Tables/AiModelsTable.php',
+        'App\\Filament\\Resources\\AiProviders\\AiProviderResource' => __DIR__ . '/../..' . '/app/Filament/Resources/AiProviders/AiProviderResource.php',
+        'App\\Filament\\Resources\\AiProviders\\Pages\\ManageAiProviders' => __DIR__ . '/../..' . '/app/Filament/Resources/AiProviders/Pages/ManageAiProviders.php',
         'App\\Filament\\Resources\\AiVendors\\AiVendorResource' => __DIR__ . '/../..' . '/app/Filament/Resources/AiVendors/AiVendorResource.php',
         'App\\Filament\\Resources\\AiVendors\\Pages\\CreateAiVendor' => __DIR__ . '/../..' . '/app/Filament/Resources/AiVendors/Pages/CreateAiVendor.php',
         'App\\Filament\\Resources\\AiVendors\\Pages\\EditAiVendor' => __DIR__ . '/../..' . '/app/Filament/Resources/AiVendors/Pages/EditAiVendor.php',
