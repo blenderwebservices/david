@@ -1,0 +1,53 @@
+{
+  "_chunk-Bni-sYT0.js": {
+    "file": "assets/chunk-Bni-sYT0.js",
+    "name": "chunk"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-B6wl0bbF.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Ch6NmjWI.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_chunk-Bni-sYT0.js"
+    ]
+  },
+  "src/assets/david-gomez-1.jpeg": {
+    "file": "assets/david-gomez-1-DV9km3Fh.jpeg",
+    "src": "src/assets/david-gomez-1.jpeg"
+  },
+  "src/assets/david-gomez-2.jpeg": {
+    "file": "assets/david-gomez-2-EcxWQEPx.jpeg",
+    "src": "src/assets/david-gomez-2.jpeg"
+  },
+  "src/assets/david-gomez-toon.jpeg": {
+    "file": "assets/david-gomez-toon-hNISEb5k.jpeg",
+    "src": "src/assets/david-gomez-toon.jpeg"
+  },
+  "src/main.jsx": {
+    "file": "assets/main-Ba3MbQHi.js",
+    "name": "main",
+    "src": "src/main.jsx",
+    "isEntry": true,
+    "imports": [
+      "_chunk-Bni-sYT0.js"
+    ],
+    "css": [
+      "assets/main-CY9xQpYY.css"
+    ],
+    "assets": [
+      "assets/david-gomez-toon-hNISEb5k.jpeg",
+      "assets/david-gomez-1-DV9km3Fh.jpeg",
+      "assets/david-gomez-2-EcxWQEPx.jpeg"
+    ]
+  }
+}
