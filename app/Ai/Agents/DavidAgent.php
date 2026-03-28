@@ -21,11 +21,14 @@ class DavidAgent implements Agent, Conversational
 
         // Dynamically override config with DB values if present
         if ($provider) {
-            if ($provider->api_key) {
-                config(["ai.providers.{$vendorKey}.key" => $provider->api_key]);
+            $apiKey = $provider->api_key ?: $provider->vendor?->api_key;
+            if ($apiKey) {
+                config(["ai.providers.{$vendorKey}.key" => $apiKey]);
             }
-            if ($provider->base_url) {
-                config(["ai.providers.{$vendorKey}.url" => $provider->base_url]);
+
+            $baseUrl = $provider->base_url ?: $provider->vendor?->base_url;
+            if ($baseUrl) {
+                config(["ai.providers.{$vendorKey}.url" => $baseUrl]);
             }
         }
 
