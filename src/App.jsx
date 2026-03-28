@@ -4,6 +4,7 @@ import david1 from './assets/david-gomez-1.jpeg';
 import david2 from './assets/david-gomez-2.jpeg';
 import { Github, Linkedin, ExternalLink, Calendar, Mail, FileText, ChevronRight, Menu, X, ArrowRight, MessageCircle, MapPin, Award, CheckCircle2, TrendingUp, Users, Phone, Globe, Briefcase, GraduationCap, Search, Download, Quote } from 'lucide-react';
 import Chatbot from './components/Chatbot';
+import ProjectsGallery from './components/ProjectsGallery';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('reciente');
@@ -106,6 +107,7 @@ const App = () => {
           <span className="font-bold tracking-tighter text-xl uppercase italic text-indigo-700">DG.Civil</span>
           <div className="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-500 items-center">
             <a href="#experiencia" className="hover:text-indigo-600 transition-colors">Trayectoria</a>
+            <a href="#proyectos" className="hover:text-indigo-600 transition-colors">Portafolio</a>
             <a href="#educacion" className="hover:text-indigo-600 transition-colors">Formación</a>
             <a href="#contacto" className="hover:text-indigo-600 transition-colors">Contacto</a>
             <a href="/admin" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-slate-900 transition-all">Ingresa</a>
@@ -234,6 +236,9 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Galería de Proyectos Dinámica */}
+      <ProjectsGallery />
 
       {/* Formación y Aptitudes */}
       <section id="educacion" className="py-24 px-6 bg-white">

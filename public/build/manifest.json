@@ -1,10 +1,10 @@
 {
-  "_chunk-Bni-sYT0.js": {
-    "file": "assets/chunk-Bni-sYT0.js",
-    "name": "chunk"
+  "_axios-BB8ciK64.js": {
+    "file": "assets/axios-BB8ciK64.js",
+    "name": "axios"
   },
   "resources/css/app.css": {
-    "file": "assets/app-jG9F6PLi.css",
+    "file": "assets/app-CnlXoxB9.css",
     "name": "app",
     "names": [
       "app.css"
@@ -13,12 +13,12 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-Ch6NmjWI.js",
+    "file": "assets/app-NyuMRbzU.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "_chunk-Bni-sYT0.js"
+      "_axios-BB8ciK64.js"
     ]
   },
   "src/assets/david-gomez-1.jpeg": {
@@ -34,15 +34,15 @@
     "src": "src/assets/david-gomez-toon.jpeg"
   },
   "src/main.jsx": {
-    "file": "assets/main-D_iRfw7v.js",
+    "file": "assets/main-Cnwb2MGh.js",
     "name": "main",
     "src": "src/main.jsx",
     "isEntry": true,
     "imports": [
-      "_chunk-Bni-sYT0.js"
+      "_axios-BB8ciK64.js"
     ],
     "css": [
-      "assets/main-CtO2NnW1.css"
+      "assets/main-esk6Qzxb.css"
     ],
     "assets": [
       "assets/david-gomez-toon-hNISEb5k.jpeg",

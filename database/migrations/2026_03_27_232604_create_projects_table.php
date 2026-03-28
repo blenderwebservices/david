@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false);
             $table->string('url')->nullable();
             $table->string('image_path')->nullable();
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }
