@@ -14,11 +14,16 @@ class ProjectForm
             ->components([
                 TextInput::make('title')
                     ->required(),
+                TextInput::make('type')
+                    ->default('project'),
+                TextInput::make('status')
+                    ->default('ongoing'),
+                \Filament\Forms\Components\Toggle::make('is_featured'),
+                TextInput::make('url')
+                    ->url(),
+                \Filament\Forms\Components\FileUpload::make('image_path')
+                    ->image(),
                 Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                TextInput::make('link'),
-                Textarea::make('tags')
                     ->columnSpanFull(),
             ]);
     }

@@ -16,6 +16,8 @@ class AiVendorsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('key')
+                    ->searchable(),
                 TextColumn::make('api_key')
                     ->searchable(),
                 TextColumn::make('created_at')

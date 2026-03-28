@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('ai_vendors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('key')->unique();
+            $table->string('name');
             $table->string('api_key')->nullable();
+            $table->string('base_url')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

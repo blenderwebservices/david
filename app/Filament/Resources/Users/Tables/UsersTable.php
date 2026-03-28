@@ -30,6 +30,8 @@ class UsersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('role')
+                    ->searchable(),
             ])
             ->filters([
                 //

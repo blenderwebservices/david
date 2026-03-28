@@ -22,6 +22,13 @@ class UserForm
                 TextInput::make('password')
                     ->password()
                     ->required(),
+                \Filament\Forms\Components\Select::make('role')
+                    ->options([
+                        \App\Models\User::ROLE_ADMIN => 'Administrator',
+                        \App\Models\User::ROLE_USER => 'User',
+                    ])
+                    ->required()
+                    ->default(\App\Models\User::ROLE_USER),
             ]);
     }
 }

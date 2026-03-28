@@ -20,9 +20,12 @@ class User extends Authenticatable implements FilamentUser
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
 
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_USER = 'user';
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return true; // Simple access for now, can be restricted by role later.
+        return $this->role === self::ROLE_ADMIN;
     }
 
     /**

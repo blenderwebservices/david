@@ -15,7 +15,7 @@ use Filament\Forms\Components\RichEditor;
 RichEditor::make('content')
 ```
 
-<AutoScreenshot name="forms/fields/rich-editor/simple" alt="Rich editor" version="5.x" />
+<AutoScreenshot name="forms/fields/rich-editor/simple" alt="Rich editor" version="4.x" />
 
 ## Storing content as JSON
 
@@ -102,7 +102,7 @@ Additional tools available in the toolbar include:
 - `tableToggleHeaderCell` - Toggles the header cell of the table.
 - `tableDelete` - Deletes the table.
 
-<UtilityInjection set="formFields" version="5.x">As well as allowing a static value, the `toolbarButtons()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="formFields" version="4.x">As well as allowing a static value, the `toolbarButtons()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 ### Customizing floating toolbars
 
@@ -169,7 +169,7 @@ RichEditor::make('content')
     ])
 ```
 
-<AutoScreenshot name="forms/fields/rich-editor/toolbar-button-group-open" alt="Rich editor with an open toolbar button group dropdown" version="5.x" />
+<AutoScreenshot name="forms/fields/rich-editor/toolbar-button-group-open" alt="Rich editor with an open toolbar button group dropdown" version="4.x" />
 
 ### Using textual dropdown toolbar buttons
 
@@ -189,7 +189,7 @@ RichEditor::make('content')
     ])
 ```
 
-<AutoScreenshot name="forms/fields/rich-editor/textual-toolbar-button-group-open" alt="Rich editor with an open textual toolbar button group dropdown" version="5.x" />
+<AutoScreenshot name="forms/fields/rich-editor/textual-toolbar-button-group-open" alt="Rich editor with an open textual toolbar button group dropdown" version="4.x" />
 
 In this example, the `Paragraph` dropdown items display their icon alongside a text label (e.g., "Paragraph", "Heading 1"). The `Alignment` dropdown remains icon-only.
 
@@ -368,7 +368,7 @@ RichEditor::make('content')
     ->fileAttachmentsVisibility('private')
 ```
 
-<UtilityInjection set="formFields" version="5.x">As well as allowing static values, the `fileAttachmentsDisk()`, `fileAttachmentsDirectory()`, and `fileAttachmentsVisibility()` methods also accept functions to dynamically calculate them. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="formFields" version="4.x">As well as allowing static values, the `fileAttachmentsDisk()`, `fileAttachmentsDirectory()`, and `fileAttachmentsVisibility()` methods also accept functions to dynamically calculate them. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 <Aside variant="tip">
     Filament also supports [`spatie/laravel-medialibrary`](https://github.com/spatie/laravel-medialibrary) for storing rich editor file attachments. See our [plugin documentation](https://filamentphp.com/plugins/filament-spatie-media-library#using-media-library-for-rich-editor-file-attachments) for more information.
@@ -422,7 +422,7 @@ RichEditor::make('content')
 
 When enabled, users can resize images by clicking on them and dragging the resize handles. The aspect ratio is always preserved when resizing.
 
-<UtilityInjection set="formFields" version="5.x">As well as allowing a static value, the `resizableImages()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="formFields" version="4.x">As well as allowing a static value, the `resizableImages()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 ## Using custom blocks
 

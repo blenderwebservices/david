@@ -16,7 +16,13 @@ class ProjectsTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('link')
+                TextColumn::make('type')
+                    ->badge(),
+                TextColumn::make('status')
+                    ->badge(),
+                \Filament\Tables\Columns\IconColumn::make('is_featured')
+                    ->boolean(),
+                TextColumn::make('url')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

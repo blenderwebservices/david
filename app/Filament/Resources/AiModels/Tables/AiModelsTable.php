@@ -18,6 +18,8 @@ class AiModelsTable
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('key')
+                    ->searchable(),
                 TextColumn::make('model_key')
                     ->searchable(),
                 TextColumn::make('created_at')

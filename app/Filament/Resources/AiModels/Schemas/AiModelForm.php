@@ -17,6 +17,8 @@ class AiModelForm
                     ->required(),
                 TextInput::make('name')
                     ->required(),
+                TextInput::make('key')
+                    ->required(),
                 TextInput::make('model_key')
                     ->required(),
             ]);

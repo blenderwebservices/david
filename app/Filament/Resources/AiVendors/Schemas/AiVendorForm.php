@@ -13,7 +13,14 @@ class AiVendorForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('api_key'),
+                TextInput::make('key')
+                    ->required(),
+                TextInput::make('api_key')
+                    ->password(),
+                TextInput::make('base_url')
+                    ->url(),
+                \Filament\Forms\Components\Toggle::make('is_active')
+                    ->default(true),
             ]);
     }
 }
