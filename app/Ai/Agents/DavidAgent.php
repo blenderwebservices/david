@@ -6,10 +6,12 @@ use App\Models\AiProvider;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\Conversational;
 use Laravel\Ai\Messages\Message;
+use Laravel\Ai\Contracts\HasTools;
 use Laravel\Ai\Promptable;
+use Laravel\Ai\Providers\Tools\WebSearch;
 use Stringable;
 
-class DavidAgent implements Agent, Conversational
+class DavidAgent implements Agent, Conversational, HasTools
 {
     use Promptable;
 
@@ -59,8 +61,30 @@ class DavidAgent implements Agent, Conversational
     public function instructions(): Stringable|string
     {
         $dbPrompt = AiProvider::where('is_default', true)->value('system_prompt');
+        $dbPrompt = AiProvider::where('is_default', true)->value('system_prompt');
+        $currentDate = now()->locale('es')->translatedFormat('l, j \d\e F \d\e Y');
 
-        return $dbPrompt ?: "Eres el asistente virtual de David Gómez Barragán, Ingeniero Civil con más de 30 años de experiencia. Tu objetivo es ayudar a los visitantes de su sitio web a conocer su trayectoria, formación y proyectos. Eres profesional, eficiente y conocedor del sector de la construcción en México. Responde siempre en español de manera cordial.";
+        $instructions = $dbPrompt ?: "Eres el asistente virtual de David Gómez Barragán, Ingeniero Civil con más de 30 años de experiencia. Tu objetivo es ayudar a los visitantes de su sitio web a conocer su trayectoria, formación y proyectos. Eres profesional, eficiente y conocedor del sector de la construcción en México. Responde siempre en español de manera cordial.";
+
+        return "Hoy es {$currentDate}. " . (string) $instructions;
+    }
+
+    /**
+     * Get the list of tools that the agent can use.
+     *
+     * @return array
+     */
+    public function tools(): array
+    {
+        $provider = AiProvider::where('is_default', true)->first();
+
+        if ($provider && $provider->web_search_enabled) {
+            return [
+                (new WebSearch())->max(3)
+            ];
+        }
+
+        return [];
     }
 
     /**
