@@ -1,1 +1,99 @@
-function a({name:i,recordKey:s,state:n}){return{error:void 0,isLoading:!1,state:n,unsubscribeLivewireHook:null,init(){this.unsubscribeLivewireHook=Livewire.interceptMessage(({message:e,onSuccess:t})=>{t(()=>{this.$nextTick(()=>{if(this.isLoading||e.component.id!==this.$root.closest("[wire\\:id]")?.attributes["wire:id"].value)return;let r=this.getServerState();r===void 0||this.getNormalizedState()===r||(this.state=r)})})}),this.$watch("state",async()=>{let e=this.getServerState();if(e===void 0||this.getNormalizedState()===e)return;this.isLoading=!0;let t=await this.$wire.updateTableColumnState(i,s,this.state);this.error=t?.error??void 0,!this.error&&this.$refs.serverState&&(this.$refs.serverState.value=this.getNormalizedState()),this.isLoading=!1})},getServerState(){if(this.$refs.serverState)return[null,void 0].includes(this.$refs.serverState.value)?"":this.$refs.serverState.value.replaceAll('\\"','"')},getNormalizedState(){let e=Alpine.raw(this.state);return[null,void 0].includes(e)?"":e},destroy(){this.unsubscribeLivewireHook?.()}}}export{a as default};
+export default function textInputTableColumn({ name, recordKey, state }) {
+    return {
+        error: undefined,
+
+        isLoading: false,
+
+        state,
+
+        unsubscribeLivewireHook: null,
+
+        init() {
+            this.unsubscribeLivewireHook = Livewire.interceptMessage(
+                ({ message, onSuccess }) => {
+                    onSuccess(() => {
+                        this.$nextTick(() => {
+                            if (this.isLoading) {
+                                return
+                            }
+
+                            if (
+                                message.component.id !==
+                                this.$root.closest('[wire\\:id]')?.attributes[
+                                    'wire:id'
+                                ].value
+                            ) {
+                                return
+                            }
+
+                            const serverState = this.getServerState()
+
+                            if (
+                                serverState === undefined ||
+                                this.getNormalizedState() === serverState
+                            ) {
+                                return
+                            }
+
+                            this.state = serverState
+                        })
+                    })
+                },
+            )
+
+            this.$watch('state', async () => {
+                const serverState = this.getServerState()
+
+                if (
+                    serverState === undefined ||
+                    this.getNormalizedState() === serverState
+                ) {
+                    return
+                }
+
+                this.isLoading = true
+
+                const response = await this.$wire.updateTableColumnState(
+                    name,
+                    recordKey,
+                    this.state,
+                )
+
+                this.error = response?.error ?? undefined
+
+                if (!this.error && this.$refs.serverState) {
+                    this.$refs.serverState.value = this.getNormalizedState()
+                }
+
+                this.isLoading = false
+            })
+        },
+
+        getServerState() {
+            if (!this.$refs.serverState) {
+                return undefined
+            }
+
+            return [null, undefined].includes(this.$refs.serverState.value)
+                ? ''
+                : this.$refs.serverState.value.replaceAll(
+                      '\\' + String.fromCharCode(34),
+                      String.fromCharCode(34),
+                  )
+        },
+
+        getNormalizedState() {
+            const state = Alpine.raw(this.state)
+
+            if ([null, undefined].includes(state)) {
+                return ''
+            }
+
+            return state
+        },
+
+        destroy() {
+            this.unsubscribeLivewireHook?.()
+        },
+    }
+}

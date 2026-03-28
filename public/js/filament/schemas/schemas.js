@@ -1,1 +1,153 @@
-(()=>{var o=()=>({isSticky:!1,width:0,resizeObserver:null,boundUpdateWidth:null,init(){let i=this.$el.parentElement;i&&(this.updateWidth(),this.resizeObserver=new ResizeObserver(()=>this.updateWidth()),this.resizeObserver.observe(i),this.boundUpdateWidth=this.updateWidth.bind(this),window.addEventListener("resize",this.boundUpdateWidth))},enableSticky(){this.isSticky=this.$el.getBoundingClientRect().top>0},disableSticky(){this.isSticky=!1},updateWidth(){let i=this.$el.parentElement;if(!i)return;let e=getComputedStyle(this.$root.querySelector(".fi-ac"));this.width=i.offsetWidth+parseInt(e.marginInlineStart,10)*-1+parseInt(e.marginInlineEnd,10)*-1},destroy(){this.resizeObserver&&(this.resizeObserver.disconnect(),this.resizeObserver=null),this.boundUpdateWidth&&(window.removeEventListener("resize",this.boundUpdateWidth),this.boundUpdateWidth=null)}});var a=function(i,e,n){let t=i;if(e.startsWith("/")&&(n=!0,e=e.slice(1)),n)return e;for(;e.startsWith("../");)t=t.includes(".")?t.slice(0,t.lastIndexOf(".")):null,e=e.slice(3);return["",null,void 0].includes(t)?e:["",null,void 0].includes(e)?t:`${t}.${e}`},d=i=>{let e=Alpine.findClosest(i,n=>n.__livewire);if(!e)throw"Could not find Livewire component in DOM tree.";return e.__livewire};document.addEventListener("alpine:init",()=>{window.Alpine.data("filamentSchema",({livewireId:i})=>({handleFormValidationError(e){e.detail.livewireId===i&&this.$nextTick(()=>{let n=this.$el.querySelector("[data-validation-error]");if(!n)return;let t=n;for(;t;)t.dispatchEvent(new CustomEvent("expand")),t=t.parentNode;setTimeout(()=>n.closest("[data-field-wrapper]").scrollIntoView({behavior:"smooth",block:"start",inline:"start"}),200)})},isStateChanged(e,n){if(e===void 0)return!1;try{return JSON.stringify(e)!==JSON.stringify(n)}catch{return e!==n}}})),window.Alpine.data("filamentSchemaComponent",({path:i,containerPath:e,$wire:n})=>({$statePath:i,$get:(t,r)=>n.$get(a(e,t,r)),$set:(t,r,s,l=!1)=>n.$set(a(e,t,s),r,l),get $state(){return n.$get(i)}})),window.Alpine.data("filamentActionsSchemaComponent",o),Livewire.interceptMessage(({message:i,onSuccess:e})=>{e(({payload:n})=>{n.effects?.dispatches?.forEach(t=>{if(!t.params?.awaitSchemaComponent)return;let r=Array.from(i.component.el.querySelectorAll(`[wire\\:partial="schema-component::${t.params.awaitSchemaComponent}"]`)).filter(s=>d(s)===i.component);if(r.length!==1){if(r.length>1)throw`Multiple schema components found with key [${t.params.awaitSchemaComponent}].`;window.addEventListener(`schema-component-${component.id}-${t.params.awaitSchemaComponent}-loaded`,()=>{window.dispatchEvent(new CustomEvent(t.name,{detail:t.params}))},{once:!0})}})})})});})();
+import actions from './components/actions.js'
+
+const resolveRelativeStatePath = function (containerPath, path, isAbsolute) {
+    let containerPathCopy = containerPath
+
+    if (path.startsWith('/')) {
+        isAbsolute = true
+        path = path.slice(1)
+    }
+
+    if (isAbsolute) {
+        return path
+    }
+
+    while (path.startsWith('../')) {
+        containerPathCopy = containerPathCopy.includes('.')
+            ? containerPathCopy.slice(0, containerPathCopy.lastIndexOf('.'))
+            : null
+
+        path = path.slice(3)
+    }
+
+    if (['', null, undefined].includes(containerPathCopy)) {
+        return path
+    }
+
+    if (['', null, undefined].includes(path)) {
+        return containerPathCopy
+    }
+
+    return `${containerPathCopy}.${path}`
+}
+
+const findClosestLivewireComponent = (el) => {
+    let closestRoot = Alpine.findClosest(el, (i) => i.__livewire)
+
+    if (!closestRoot) {
+        throw 'Could not find Livewire component in DOM tree.'
+    }
+
+    return closestRoot.__livewire
+}
+
+document.addEventListener('alpine:init', () => {
+    window.Alpine.data('filamentSchema', ({ livewireId }) => ({
+        handleFormValidationError(event) {
+            if (event.detail.livewireId !== livewireId) {
+                return
+            }
+
+            this.$nextTick(() => {
+                let error = this.$el.querySelector('[data-validation-error]')
+
+                if (!error) {
+                    return
+                }
+
+                let elementToExpand = error
+
+                while (elementToExpand) {
+                    elementToExpand.dispatchEvent(new CustomEvent('expand'))
+
+                    elementToExpand = elementToExpand.parentNode
+                }
+
+                setTimeout(
+                    () =>
+                        error.closest('[data-field-wrapper]').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                            inline: 'start',
+                        }),
+                    200,
+                )
+            })
+        },
+
+        isStateChanged(state, old) {
+            if (state === undefined) {
+                return false
+            }
+
+            try {
+                return JSON.stringify(state) !== JSON.stringify(old)
+            } catch {
+                return state !== old
+            }
+        },
+    }))
+
+    window.Alpine.data(
+        'filamentSchemaComponent',
+        ({ path, containerPath, $wire }) => ({
+            $statePath: path,
+            $get: (path, isAbsolute) => {
+                return $wire.$get(
+                    resolveRelativeStatePath(containerPath, path, isAbsolute),
+                )
+            },
+            $set: (path, state, isAbsolute, isLive = false) => {
+                return $wire.$set(
+                    resolveRelativeStatePath(containerPath, path, isAbsolute),
+                    state,
+                    isLive,
+                )
+            },
+            get $state() {
+                return $wire.$get(path)
+            },
+        }),
+    )
+
+    window.Alpine.data('filamentActionsSchemaComponent', actions)
+
+    Livewire.interceptMessage(({ message, onSuccess }) => {
+        onSuccess(({ payload }) => {
+            payload.effects?.dispatches?.forEach((dispatch) => {
+                if (!dispatch.params?.awaitSchemaComponent) {
+                    return
+                }
+
+                let els = Array.from(
+                    message.component.el.querySelectorAll(
+                        `[wire\\:partial="schema-component::${dispatch.params.awaitSchemaComponent}"]`,
+                    ),
+                ).filter(
+                    (el) =>
+                        findClosestLivewireComponent(el) === message.component,
+                )
+
+                if (els.length === 1) {
+                    return
+                }
+
+                if (els.length > 1) {
+                    throw `Multiple schema components found with key [${dispatch.params.awaitSchemaComponent}].`
+                }
+
+                window.addEventListener(
+                    `schema-component-${component.id}-${dispatch.params.awaitSchemaComponent}-loaded`,
+                    () => {
+                        window.dispatchEvent(
+                            new CustomEvent(dispatch.name, {
+                                detail: dispatch.params,
+                            }),
+                        )
+                    },
+                    { once: true },
+                )
+            })
+        })
+    })
+})

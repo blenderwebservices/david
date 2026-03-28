@@ -4,7 +4,7 @@
     "name": "chunk"
   },
   "resources/css/app.css": {
-    "file": "assets/app-B6wl0bbF.css",
+    "file": "assets/app-jG9F6PLi.css",
     "name": "app",
     "names": [
       "app.css"
@@ -34,7 +34,7 @@
     "src": "src/assets/david-gomez-toon.jpeg"
   },
   "src/main.jsx": {
-    "file": "assets/main-Ba3MbQHi.js",
+    "file": "assets/main-D_iRfw7v.js",
     "name": "main",
     "src": "src/main.jsx",
     "isEntry": true,
@@ -42,7 +42,7 @@
       "_chunk-Bni-sYT0.js"
     ],
     "css": [
-      "assets/main-CY9xQpYY.css"
+      "assets/main-CtO2NnW1.css"
     ],
     "assets": [
       "assets/david-gomez-toon-hNISEb5k.jpeg",

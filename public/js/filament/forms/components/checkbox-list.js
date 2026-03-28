@@ -1,1 +1,117 @@
-function c({livewireId:s}){return{areAllCheckboxesChecked:!1,checkboxListOptions:[],search:"",unsubscribeLivewireHook:null,visibleCheckboxListOptions:[],init(){this.checkboxListOptions=Array.from(this.$root.querySelectorAll(".fi-fo-checkbox-list-option")),this.updateVisibleCheckboxListOptions(),this.$nextTick(()=>{this.checkIfAllCheckboxesAreChecked()}),this.unsubscribeLivewireHook=Livewire.interceptMessage(({message:e,onSuccess:t})=>{t(()=>{this.$nextTick(()=>{e.component.id===s&&(this.checkboxListOptions=Array.from(this.$root.querySelectorAll(".fi-fo-checkbox-list-option")),this.updateVisibleCheckboxListOptions(),this.checkIfAllCheckboxesAreChecked())})})}),this.$watch("search",()=>{this.updateVisibleCheckboxListOptions(),this.checkIfAllCheckboxesAreChecked()})},checkIfAllCheckboxesAreChecked(){this.areAllCheckboxesChecked=this.visibleCheckboxListOptions.length===this.visibleCheckboxListOptions.filter(e=>e.querySelector("input[type=checkbox]:checked, input[type=checkbox]:disabled")).length},toggleAllCheckboxes(){this.checkIfAllCheckboxesAreChecked();let e=!this.areAllCheckboxesChecked;this.visibleCheckboxListOptions.forEach(t=>{let i=t.querySelector("input[type=checkbox]");i.disabled||i.checked!==e&&(i.checked=e,i.dispatchEvent(new Event("change")))}),this.areAllCheckboxesChecked=e},updateVisibleCheckboxListOptions(){this.visibleCheckboxListOptions=this.checkboxListOptions.filter(e=>["",null,void 0].includes(this.search)||e.querySelector(".fi-fo-checkbox-list-option-label")?.innerText.toLowerCase().includes(this.search.toLowerCase())?!0:e.querySelector(".fi-fo-checkbox-list-option-description")?.innerText.toLowerCase().includes(this.search.toLowerCase()))},destroy(){this.unsubscribeLivewireHook?.()}}}export{c as default};
+export default function checkboxListFormComponent({ livewireId }) {
+    return {
+        areAllCheckboxesChecked: false,
+
+        checkboxListOptions: [],
+
+        search: '',
+
+        unsubscribeLivewireHook: null,
+
+        visibleCheckboxListOptions: [],
+
+        init() {
+            this.checkboxListOptions = Array.from(
+                this.$root.querySelectorAll('.fi-fo-checkbox-list-option'),
+            )
+
+            this.updateVisibleCheckboxListOptions()
+
+            this.$nextTick(() => {
+                this.checkIfAllCheckboxesAreChecked()
+            })
+
+            this.unsubscribeLivewireHook = Livewire.interceptMessage(
+                ({ message, onSuccess }) => {
+                    onSuccess(() => {
+                        this.$nextTick(() => {
+                            if (message.component.id !== livewireId) {
+                                return
+                            }
+
+                            this.checkboxListOptions = Array.from(
+                                this.$root.querySelectorAll(
+                                    '.fi-fo-checkbox-list-option',
+                                ),
+                            )
+
+                            this.updateVisibleCheckboxListOptions()
+
+                            this.checkIfAllCheckboxesAreChecked()
+                        })
+                    })
+                },
+            )
+
+            this.$watch('search', () => {
+                this.updateVisibleCheckboxListOptions()
+                this.checkIfAllCheckboxesAreChecked()
+            })
+        },
+
+        checkIfAllCheckboxesAreChecked() {
+            this.areAllCheckboxesChecked =
+                this.visibleCheckboxListOptions.length ===
+                this.visibleCheckboxListOptions.filter((checkboxLabel) =>
+                    checkboxLabel.querySelector(
+                        'input[type=checkbox]:checked, input[type=checkbox]:disabled',
+                    ),
+                ).length
+        },
+
+        toggleAllCheckboxes() {
+            this.checkIfAllCheckboxesAreChecked()
+
+            const inverseAreAllCheckboxesChecked = !this.areAllCheckboxesChecked
+
+            this.visibleCheckboxListOptions.forEach((checkboxLabel) => {
+                const checkbox = checkboxLabel.querySelector(
+                    'input[type=checkbox]',
+                )
+
+                if (checkbox.disabled) {
+                    return
+                }
+
+                if (checkbox.checked === inverseAreAllCheckboxesChecked) {
+                    return
+                }
+
+                checkbox.checked = inverseAreAllCheckboxesChecked
+                checkbox.dispatchEvent(new Event('change'))
+            })
+
+            this.areAllCheckboxesChecked = inverseAreAllCheckboxesChecked
+        },
+
+        updateVisibleCheckboxListOptions() {
+            this.visibleCheckboxListOptions = this.checkboxListOptions.filter(
+                (checkboxListItem) => {
+                    if (['', null, undefined].includes(this.search)) {
+                        return true
+                    }
+
+                    if (
+                        checkboxListItem
+                            .querySelector('.fi-fo-checkbox-list-option-label')
+                            ?.innerText.toLowerCase()
+                            .includes(this.search.toLowerCase())
+                    ) {
+                        return true
+                    }
+
+                    return checkboxListItem
+                        .querySelector(
+                            '.fi-fo-checkbox-list-option-description',
+                        )
+                        ?.innerText.toLowerCase()
+                        .includes(this.search.toLowerCase())
+                },
+            )
+        },
+
+        destroy() {
+            this.unsubscribeLivewireHook?.()
+        },
+    }
+}
