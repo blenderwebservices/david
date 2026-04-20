@@ -7,7 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+/vendor
 dist
 dist-ssr
 *.local
@@ -23,3 +25,28 @@ dist-ssr
 *.sln
 *.sw?
 *.code-workspace
+
+# Laravel specific
+.env
+.env.backup
+.env.production
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/auth.json
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.phpactor.json
+/.fleet
+/.nova
+/.zed
+Thumbs.db
