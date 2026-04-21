@@ -4,7 +4,7 @@
     "name": "axios"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CnlXoxB9.css",
+    "file": "assets/app-CrHccAas.css",
     "name": "app",
     "names": [
       "app.css"
@@ -34,7 +34,7 @@
     "src": "src/assets/david-gomez-toon.jpeg"
   },
   "src/main.jsx": {
-    "file": "assets/main-Cnwb2MGh.js",
+    "file": "assets/main-Dq1kYb62.js",
     "name": "main",
     "src": "src/main.jsx",
     "isEntry": true,
@@ -42,7 +42,7 @@
       "_axios-BB8ciK64.js"
     ],
     "css": [
-      "assets/main-esk6Qzxb.css"
+      "assets/main-CrdDw7Iq.css"
     ],
     "assets": [
       "assets/david-gomez-toon-hNISEb5k.jpeg",
