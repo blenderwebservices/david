@@ -13,6 +13,13 @@
     @vite(['src/main.jsx', 'resources/css/app.css'])
 </head>
 <body class="antialiased">
+    @auth
+        <div style="position: fixed; top: 1rem; right: 1rem; z-index: 50;">
+            <a href="/admin" style="background: rgba(0,0,0,0.8); color: white; padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; text-decoration: none; backdrop-filter: blur(4px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                Dashboard Admin
+            </a>
+        </div>
+    @endauth
     <div id="root"></div>
 </body>
 </html>

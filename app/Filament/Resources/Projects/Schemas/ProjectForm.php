@@ -22,24 +22,11 @@ class ProjectForm
                 TextInput::make('url')
                     ->url(),
                 \Filament\Forms\Components\FileUpload::make('image_path')
+                    ->label('Imagen')
                     ->image()
-                    ->disk('public')
                     ->directory('projects')
-                    ->visibility('public')
-                    ->afterStateHydrated(function ($component, $state) {
-                        if ($state && !str_starts_with($state, 'projects/')) {
-                            $component->state('projects/' . $state);
-                        }
-                    })
-                    ->getUploadedFileNameForStorageUsing(function (\Livewire\Features\SupportFileUploads\TemporaryUploadedFile $file, $get): string {
-                        $title = $get('title') ?? 'project';
-                        $slug = \Illuminate\Support\Str::slug($title);
-                        return (string) str($slug)
-                            ->append('-')
-                            ->append(now()->timestamp)
-                            ->append('.')
-                            ->append($file->getClientOriginalExtension());
-                    }),
+                    ->disk('public')
+                    ->visibility('public'),
                 Textarea::make('description')
                     ->columnSpanFull(),
             ]);
