@@ -110,7 +110,7 @@ const App = () => {
             <a href="#proyectos" className="hover:text-indigo-600 transition-colors">Portafolio</a>
             <a href="#educacion" className="hover:text-indigo-600 transition-colors">Formación</a>
             <a href="#contacto" className="hover:text-indigo-600 transition-colors">Contacto</a>
-            <a href="/admin" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-slate-900 transition-all">Ingresa</a>
+            <a href="/admin/login" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-slate-900 transition-all">Ingresa</a>
           </div>
         </div>
       </nav>
